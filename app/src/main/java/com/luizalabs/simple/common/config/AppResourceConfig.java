@@ -9,6 +9,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 import com.luizalabs.simple.common.util.AppProperties;
 import com.luizalabs.simple.user.repository.UserRepository;
+import com.luizalabs.simple.user.repository.impl.UserCSVRepository;
 import com.luizalabs.simple.user.repository.impl.UserScyllaDBRepository;
 import com.luizalabs.simple.user.service.UserService;
 import com.luizalabs.simple.user.service.impl.UserServiceImpl;
@@ -48,7 +49,7 @@ public class AppResourceConfig extends ResourceConfig {
     }
 
     protected UserRepository userRepository() {
-        return new UserScyllaDBRepository(scyllabDBConfig);
+        return new UserCSVRepository(appProperties);
     }
 
     public URI uri() {

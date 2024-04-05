@@ -73,7 +73,8 @@ public class UserCSVRepository implements UserRepository {
                 String data = users.stream()
                     .map(this::stringify)
                     .collect(Collectors.joining("\n"));
-                Files.write(file.toPath(), data.getBytes(), StandardOpenOption.WRITE);
+                Files.writeString(file.toPath(), data,
+                    StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
             } catch (IOException e) {
                 LOGGER.error("Error in save data", e);
             }                
